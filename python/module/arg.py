@@ -66,6 +66,40 @@ def argparse_mixed():
     # for example: test = argparsed_mixed() , use test.prefix to get value.
     return args
 
+def argparse_huge():
+    """
+    如果涉及大量的重复性参数，需要用到parents
+    """
+    descp='With migration or delete function\'s tool for redis.'
+    parser = argparse.ArgumentParser(description=descp, conflict_handler='resolve')
+    subparsers = parser.add_subparsers()
+
+    # add father parent parser template 
+    src_parser = argparse.ArgumentParser(add_help=False)
+    dst_parser = argparse.ArgumentParser(add_help=False)
+    pre_parser = argparse.ArgumentParser(add_help=False)
+    src_parser.add_argument("-s", dest="src_redis", help="redis src addr")
+    src_parser.add_argument("--sps", dest="src_pass", help="redis src password")
+    src_parser.add_argument("--sport", dest="src_port", help="redis src port")
+    dst_parser.add_argument("-d", dest="dst_redis", help="redis dst addr")
+    dst_parser.add_argument("--dps", dest="dst_pass", help="redis dst password")
+    dst_parser.add_argument("--dport", dest="dst_port", help="redis dst port")
+    pre_parser.add_argument("-p", dest="keyprefix", help="prefix of keys")
+
+    parser_move = subparsers.add_parser("move", parents=[src_parser, dst_parser, pre_parser],
+                                        help = 'migrate keys from A to B , no keys left in a.')
+    parser_move.set_defaults(option="move")
+    parser_delete = subparsers.add_parser("delete", parents=[src_parser, pre_parser],
+                                        help = 'delete keys by matching prefix')
+    parser_delete.set_defaults(option="delete")
+    parser_migrate = subparsers.add_parser("migrate", parents=[src_parser, dst_parser, pre_parser],
+                                        help = 'migrate keys from A to B , no keys left in a.')
+    parser_migrate.set_defaults(option="migrate")
+
+    args = parser.parse_args()
+    # Notice: args is an object like NameSpace(xx=xx,yy=zz)
+    # use vars() change it to dict
+    return vars(args)
 
 
 #test = argparse_mixed()
