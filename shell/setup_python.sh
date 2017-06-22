@@ -2,11 +2,19 @@
 #
 #添加自动补全，python命令历史
 #
+if [[ $SHELL =~ 'zsh' ]]
+    then
+    echo "export PYTHONSTARTUP='/root/.pythonstartup'" >> ~/.zshrc
+    source ~/.zshrc
+    else
+    echo "export PYTHONSTARTUP='/root/.pythonstartup'" >> ~/.bashrc
+    source ~/.bashrc
+fi
 
-echo "export PYTHONSTARTUP='/root/.pythonstartup'" >> /root/.bashrc
-source /root/.bashrc
 
-cat >>/root/.pythonstartup <<EOF
+exit
+
+cat >> ~/.pythonstartup <<EOF
 
 import os  
 import readline  
