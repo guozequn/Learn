@@ -8,9 +8,9 @@
 #   Copyright (C) 2017 All rights reserved.
 #===========================================
 import pika
-credentials = pika.PlainCredentials('celery_music','music%2017')
+credentials = pika.PlainCredentials('$USER','$PASS')
 connection = pika.BlockingConnection(pika.ConnectionParameters(
-	'10.185.92.57',5672,'/celery_music',credentials))
+	'$IP',5672,'$VHOST',credentials))
 
 def callback(ch, method, properties, body):
 	    print(" [x] Received %r" % body)
@@ -25,7 +25,3 @@ channel.basic_publish(exchange='Test',
 #		queue='balance',)
 print(" [x] Sent 'Hello World!'")
 connection.close()
-
-
-
-
