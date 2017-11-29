@@ -13,7 +13,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(
 	'$IP',5672,'$VHOST',credentials))
 
 def callback(ch, method, properties, body):
-	    print(" [x] Received %r" % body)
+	print(" [x] Received %r" % body)
 channel = connection.channel()
 
 channel.queue_declare(queue='MY.celery_music')
