@@ -101,15 +101,23 @@ class CentralCorridor(Scence):
     """
 
     Text_shoot = """
-    Waiting.
+    Quick on the draw you yank out your blaster it at the Gothon. His clown costume is flow moving 
+    around his body, which throws off you. Your laser hits his costume but misses him.
+    This completely ruins his brand niw costum bought him, which makes him fly into an indeed and 
+    blast you repeatly in the face until dead. then he eats you.
     """
 
     Text_dodge = """
-    Waiting
+    Like a world class boxer you dodge, weave, slide right as the Gothon's blaster cranks past your head.
+    In the middle of your artfully past your head on wall and pass out. You wake up shortly after 
+    die as the Gothon stomps on your head and Leg.
     """
 
     Text_joke = """
-    Waiting
+    Lucky for you they made you learn Gothon i n the academy. You tell the one Gothon joke 
+    Lbhe zbgure vf fb sbg, jura fur fvgf nebgh fvgf nebgaq . The Gothon stop  not to laugh, 
+    then busts out laughing and While he's laughing you run up and shoot his head putting him down,
+    then jump through Weapon Armory door.
     """
 
 
