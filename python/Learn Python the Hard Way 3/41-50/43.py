@@ -16,6 +16,10 @@
 # 5. Repeat and refine
 
 import sys
+from sys import exit
+from random import randint
+from textwrap import dedent
+
 """
 I'm going to write a little paragraph for the game:
     
@@ -71,9 +75,17 @@ class Engine(object):
 
 class Death(Scence):
 
-    def enter(self):
-        pass
+    quips = [
+        "You died. You kinda suck at this.",
+        "Your Mom would be proud...if she were smarter.",
+        "Such a loser.",
+        "I have a small puppy that's better at this.",
+        "You're worse than your Dad's jokes."
+       ]
 
+    def enter(self):
+        print(Death.quips[randint(0, len(self.quips)-1)])
+        exit(1)
 
 class CentralCorridor(Scence):
 
