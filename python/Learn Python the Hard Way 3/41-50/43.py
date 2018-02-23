@@ -89,8 +89,47 @@ class Death(Scence):
 
 class CentralCorridor(Scence):
 
+    Text_begining = """
+    The Gothons of Planet Percal #25 have invaded destroyed your entire crew.
+    You are the last survive member and your last mission is to get the neutron 
+    bomb from the Weapons Armory. put it in the bridge blow the ship up after getting ]
+    into an escape pod.
+    
+    You're running down the central corridor to the Armory when a Gothon jumps out, red scaly
+    skin and teeth, and evil clown costume flowing around highly filled body. He's blocking the
+    door to the Armory about to pull a weapon to blast you.
+    """
+
+    Text_shoot = """
+    Waiting.
+    """
+
+    Text_dodge = """
+    Waiting
+    """
+
+    Text_joke = """
+    Waiting
+    """
+
+
     def enter(self):
-        pass
+        print(dedent(self.Text_begining))
+
+    action = input("> ")
+
+    if action == "shoot!":
+        print(dedent(Text_shoot))
+        return 'death'
+    elif action == "dodge!":
+        print(dedent(Text_dodge))
+        return 'death'
+    elif action == "tell a joke!":
+        print(dedent(Text_joke))
+        return 'laser_weapon_armory'
+    else:
+        print("DOES NOT COMPLETE!")
+        return 'central_corridor'
 
 
 class LaserWeaponArmory(Scence):
