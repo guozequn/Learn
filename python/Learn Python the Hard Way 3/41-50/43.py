@@ -46,7 +46,9 @@ Escape Pod          Where the hero escapes but only after guessing the right esc
 class Scence(object):
 
     def enter(self):
-        pass
+        print("This scene is not yet configured.")
+        print("Subclass it and implement enter()")
+        exit(1)
 
 
 class Engine(object):
@@ -85,6 +87,8 @@ class Map(object):
 
     def __init__(self, start_scence):
         pass
+
+
 
     def next_scene(self):
         pass
