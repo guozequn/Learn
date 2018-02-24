@@ -141,8 +141,43 @@ class CentralCorridor(Scence):
 
 
 class LaserWeaponArmory(Scence):
+
+    Text_enter = """
+    You do a dive roll into the Weapon Armory, critical
+    the room for the more Gothons that might be hiding quiet,
+    too quiet. You stand up and run to the room and find the neutron
+    bomb in its constant There's a keypad lock on the box and you need the lock closes 
+    forever and you can't get the code is 3 digits 
+    """
+    Text_bingo = """
+    The container clicks open and the seal bridge and blown the gas out.
+    You grab the neutron bomb and run as fast as you can to the bridge where
+    you must place right spot.
+    """
+    Text_death = """
+    The lock buzzes one last time and then you sickening melting sound as the mechanism together
+    You decide to sit there, and fight the Gothons blow up the ship from their ship.
+    """
     def enter(self):
-        pass
+        print(dedent(self.Text_enter))
+
+        code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}"
+        guess = input("[keypad]> ")
+        guesses = 0
+
+        while guess != code and guesses < 10:
+            print(f"BZZZZEDDD!")
+            guesses += 1
+            guess = input("[keypad]> ")
+
+        if guess == code:
+            print(dedent(self.Text_bingo))
+            return 'the_bridge'
+
+        else:
+            print(dedent(self.Text_death))
+            return 'death'
+
 
 
 class EscapePod(Scence):
