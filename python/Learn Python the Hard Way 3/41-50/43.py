@@ -94,7 +94,6 @@ class CentralCorridor(Scence):
     You are the last survive member and your last mission is to get the neutron 
     bomb from the Weapons Armory. put it in the bridge blow the ship up after getting ]
     into an escape pod.
-    
     You're running down the central corridor to the Armory when a Gothon jumps out, red scaly
     skin and teeth, and evil clown costume flowing around highly filled body. He's blocking the
     door to the Armory about to pull a weapon to blast you.
@@ -122,22 +121,23 @@ class CentralCorridor(Scence):
 
 
     def enter(self):
+
         print(dedent(self.Text_begining))
 
-    action = input("> ")
+        action = input("> ")
 
-    if action == "shoot!":
-        print(dedent(Text_shoot))
-        return 'death'
-    elif action == "dodge!":
-        print(dedent(Text_dodge))
-        return 'death'
-    elif action == "tell a joke!":
-        print(dedent(Text_joke))
-        return 'laser_weapon_armory'
-    else:
-        print("DOES NOT COMPLETE!")
-        return 'central_corridor'
+        if action == "shoot!":
+            print(dedent(self.Text_shoot))
+            return 'death'
+        elif action == "dodge!":
+            print(dedent(self.Text_dodge))
+            return 'death'
+        elif action == "tell a joke!":
+            print(dedent(self.Text_joke))
+            return 'laser_weapon_armory'
+        else:
+            print("DOES NOT COMPLETE!")
+            return 'central_corridor'
 
 
 class LaserWeaponArmory(Scence):
@@ -162,6 +162,7 @@ class LaserWeaponArmory(Scence):
         print(dedent(self.Text_enter))
 
         code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}"
+        print(code)
         guess = input("[keypad]> ")
         guesses = 0
 
@@ -206,8 +207,10 @@ class TheBridge(Scence):
 
         if action == "throw the bomb":
             print(dedent(self.Text_throw))
+            return 'death'
         elif action == "slowly place the bomb":
             print(dedent(self.Text_place))
+            return 'escape_pod'
         else:
             print('DOES NOT COMPUTE!')
             return "the_bridge"
@@ -216,7 +219,8 @@ class TheBridge(Scence):
 
 class EscapePod(Scence):
 
-    good_pod = randint(1,5)
+
+
     Text_enter = """
     You rush through the ship desperately trying the escape pod before the whole ship explodes
     like hardly any Gothons are on the ship, so you clear of interference. You get to the chamber
@@ -225,7 +229,13 @@ class EscapePod(Scence):
     """
 
     def enter(self):
+        print(self.Text_enter)
+        good_pod = randint(1, 5)
+        print(good_pod)
         guess = input("[pod]> ")
+        while not guess.isdigit():
+            guess = input("[pod]> (number(1-9))")
+            print(guess)
         Text_wrong = f"""
         You jump into pod {guess} and hit the eject button. The pod escapes out into the void of space implodes
         as the hull reptures, crushing yet jam jelly .
@@ -235,7 +245,7 @@ class EscapePod(Scence):
         planet blow. As it files to the planet, back and see your ship implode then explore bright star, taking out 
         the Gothon ship at the same time. You Win!
         """
-        if guess != self.good_pod:
+        if int(guess) != good_pod:
             print(dedent(Text_wrong))
             return 'death'
         else:
@@ -254,16 +264,27 @@ class Finished(Scence):
 
 class Map(object):
 
+    scenes = {
+        'central_corridor': CentralCorridor(),
+        'laser_weapon_armory': LaserWeaponArmory(),
+        'the_bridge': TheBridge(),
+        'escape_pod': EscapePod(),
+        'death': Death(),
+        'finished': Finished()
+    }
+
     def __init__(self, start_scence):
-        pass
+        self.start_scene = start_scence
 
 
-
-    def next_scene(self):
-        pass
+    def next_scene(self, scence_name):
+        val = Map.scenes.get(scence_name)
+        return val
 
     def opening_scene(self):
-        pass
+        return self.next_scene(self.start_scene)
+
+
 
 
 a_map = Map('central_corridor')
