@@ -179,6 +179,40 @@ class LaserWeaponArmory(Scence):
             return 'death'
 
 
+class TheBridge(Scence):
+
+    Text_enter = """
+    You burst onto the bridge with the neutron des under your arm and surprise 5 Gothons who are 
+    take control of the ship. Each of them has an clown costume than the ship. Each of them has an 
+    clown costume than the last. They haven't pull weapons out yet, as they see the active bomb 
+    arm and don't want to set if off.
+    """
+    Text_throw = """
+    In a panic you throw the bomb at the groud and make a leap for the door. Right as you Gothon shoots
+    you right in the back killing you die you see another Gothon frantically disarm the bomb. You die knowing
+    they will blow up when it goes off.
+    """
+    Text_place = """
+    You point your blaster at the bomb under the Gothons put their hands up and start You inch backward to the door 
+    open it a carefully place the bomb on the floor, post blaster at it . You then jump back through and punch 
+    the close button and blast the lock Gothons can't get out. Now that the bomb will explode after you run 
+    to the escape pod to get off this.
+    """
+
+    def enter(self):
+        print(dedent(self.Text_enter))
+
+        action = input("> ")
+
+        if action == "throw the bomb":
+            print(dedent(self.Text_throw))
+        elif action == "slowly place the bomb":
+            print(dedent(self.Text_place))
+        else:
+            print('DOES NOT COMPUTE!')
+            return "the_bridge"
+
+
 
 class EscapePod(Scence):
     def enter(self):
