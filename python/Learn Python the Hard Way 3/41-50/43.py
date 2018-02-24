@@ -215,8 +215,41 @@ class TheBridge(Scence):
 
 
 class EscapePod(Scence):
+
+    good_pod = randint(1,5)
+    Text_enter = """
+    You rush through the ship desperately trying the escape pod before the whole ship explodes
+    like hardly any Gothons are on the ship, so you clear of interference. You get to the chamber
+    escape pods, and now need to pick one to take them cold be damaged but you don't have time 
+    There's 5 pods witch one do you take ?
+    """
+
     def enter(self):
-        pass
+        guess = input("[pod]> ")
+        Text_wrong = f"""
+        You jump into pod {guess} and hit the eject button. The pod escapes out into the void of space implodes
+        as the hull reptures, crushing yet jam jelly .
+        """
+        Text_right = f"""
+        You jump into pod {guess} and hit the eject button. The pod easily slides out into the space head to the
+        planet blow. As it files to the planet, back and see your ship implode then explore bright star, taking out 
+        the Gothon ship at the same time. You Win!
+        """
+        if guess != self.good_pod:
+            print(dedent(Text_wrong))
+            return 'death'
+        else:
+            print(dedent(Text_right))
+            return 'finished'
+
+
+class Finished(Scence):
+
+    def enter(self):
+        print("You won! Good job!")
+        return 'finished'
+
+
 
 
 class Map(object):
