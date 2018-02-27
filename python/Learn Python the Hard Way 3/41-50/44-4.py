@@ -14,7 +14,6 @@ class Parent(object):
         print("Parent implicit()")
 
     def altered(self):
-        test = 1
         print("Parent altered()")
 
 class Child(Parent):
@@ -25,7 +24,6 @@ class Child(Parent):
     def altered(self):
         print("Child, Before Parent altered()")
         super(Child, self).altered()
-        print(test)
         print("CHild, After Parent altered()")
 
 
