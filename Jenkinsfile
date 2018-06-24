@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Check 3') {
           steps {
-            sh 'Check 3'
+            sh 'echo Check'
           }
         }
       }
