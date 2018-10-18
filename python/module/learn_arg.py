@@ -70,7 +70,7 @@ def argparse_huge():
     """
     如果涉及大量的重复性参数，需要用到parents
     """
-    descp='With migration or delete function\'s tool for redis.'
+    descp = 'With migration or delete function\'s tool for redis.'
     parser = argparse.ArgumentParser(description=descp, conflict_handler='resolve')
     subparsers = parser.add_subparsers()
 
@@ -101,6 +101,14 @@ def argparse_huge():
     # use vars() change it to dict
     return vars(args)
 
+def argparse_choice():
+    """
+    只接受选项参数
+    """
+    descp = "choices args"
+    parser = argparse.ArgumentParser(description=descp)
+    parser.add_argument('move', choices=['rock', 'paper', 'scissors'], type=str.lower)
+    parser.parse_args()
 
 #test = argparse_mixed()
 test = argparse_group()
